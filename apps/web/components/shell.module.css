@@ -1,0 +1,135 @@
+.shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  background: linear-gradient(to right, var(--cobalt) 232px, var(--ground) 232px);
+}
+
+.rail {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px 14px;
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+.topo {
+  display: grid;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+.empresa {
+  font-size: var(--t-sm);
+  color: var(--on-cobalt-2);
+}
+
+.nav {
+  display: grid;
+  gap: 2px;
+}
+
+.item,
+.sair {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  color: var(--on-cobalt-2);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--t-md);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background 150ms var(--ease), color 150ms var(--ease);
+}
+
+.item:hover,
+.sair:hover {
+  background: rgb(255 255 255 / 0.08);
+  color: var(--on-cobalt);
+}
+
+.item[aria-current='page'] {
+  background: var(--surface);
+  color: var(--cobalt);
+}
+
+.item:focus-visible,
+.sair:focus-visible {
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.55);
+}
+
+.sair {
+  margin-top: auto;
+}
+
+.conteudo {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+    padding-bottom: 72px;
+    background: var(--ground);
+  }
+  .rail {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+  }
+  .topo {
+    padding: 0;
+    gap: 2px;
+  }
+  .empresa {
+    font-size: var(--t-xs);
+  }
+  .nav {
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .item {
+    flex-direction: column;
+    gap: 2px;
+    height: 56px;
+    padding: 4px 2px;
+    justify-content: center;
+    font-size: 0.6875rem;
+    color: var(--ink-3);
+  }
+  .item:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+  .item[aria-current='page'] {
+    background: var(--cobalt-tint);
+    color: var(--cobalt);
+  }
+  .item:focus-visible {
+    box-shadow: var(--focus);
+  }
+  .sair {
+    margin: 0;
+    color: var(--on-cobalt);
+  }
+}

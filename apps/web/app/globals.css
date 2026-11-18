@@ -1,0 +1,279 @@
+@import '@fontsource-variable/manrope';
+
+:root {
+  /* Pampulha: cobalto dos azulejos sobre fundo claro e frio. */
+  --ink: #0e1a33;
+  --ink-2: #46526b;
+  --ink-3: #5e6a82;
+  --ground: #f3f5f9;
+  --surface: #ffffff;
+  --line: #d9dfe9;
+  --line-strong: #b9c3d4;
+
+  --cobalt: #1c3da3;
+  --cobalt-deep: #132c78;
+  --cobalt-tint: #e8edfa;
+  --on-cobalt: #ffffff;
+  --on-cobalt-2: #c8d3f4;
+
+  /* Recibo da corrida */
+  --part-motorista: #1c3da3;
+  --part-gestor: #b5701a;
+  --part-plataforma: #5b6b8c;
+  --part-pix: #9aa6bc;
+  --part-locadora: #2f7d6d;
+
+  --ok: #1f7a4d;
+  --ok-tint: #e5f3ec;
+  --warn: #9a5800;
+  --warn-tint: #fbf0df;
+  --danger: #b42318;
+  --danger-tint: #fdeceb;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 2px rgb(14 26 51 / 0.06), 0 4px 12px rgb(14 26 51 / 0.05);
+  --focus: 0 0 0 3px rgb(28 61 163 / 0.28);
+
+  --font: 'Manrope Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --t-xs: 0.75rem;
+  --t-sm: 0.8125rem;
+  --t-md: 0.9375rem;
+  --t-lg: 1.125rem;
+  --t-xl: 1.375rem;
+  --t-2xl: 2rem;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+  caret-color: var(--cobalt);
+}
+
+a {
+  color: var(--cobalt);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Controles ---------- */
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field > span {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.input,
+.select {
+  height: 44px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: var(--t-md);
+  transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--ink-3);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--cobalt);
+  box-shadow: var(--focus);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.input-prefix {
+  position: relative;
+}
+
+.input-prefix > b {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+.input-prefix > .input {
+  padding-left: 40px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: var(--t-md);
+  cursor: pointer;
+}
+
+.check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cobalt);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: var(--t-md);
+  cursor: pointer;
+  transition: background 150ms var(--ease), border-color 150ms var(--ease), transform 150ms var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--cobalt-deep);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--ink-3);
+}
+
+.alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--t-sm);
+}
+
+.alert-danger {
+  background: var(--danger-tint);
+  color: var(--danger);
+}
+
+.alert-info {
+  background: var(--cobalt-tint);
+  color: var(--cobalt-deep);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tag-blindado {
+  background: var(--ink);
+  color: #fff;
+}
+
+.tag-neutral {
+  background: var(--ground);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+
+.tag-warn {
+  background: var(--warn-tint);
+  color: var(--warn);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

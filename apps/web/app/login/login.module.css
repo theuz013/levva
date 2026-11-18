@@ -1,0 +1,153 @@
+.pagina {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(360px, 5fr) 6fr;
+  background: var(--surface);
+}
+
+.painel {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.arcos {
+  position: absolute;
+  right: -150px;
+  bottom: 0;
+  width: 92%;
+  max-width: 640px;
+  height: auto;
+  pointer-events: none;
+}
+
+.frase {
+  max-width: 34ch;
+  position: relative;
+  z-index: 1;
+}
+
+.fraseGrande {
+  margin: 0 0 16px;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.fraseMenor {
+  margin: 0;
+  white-space: nowrap;
+  color: var(--on-cobalt-2);
+  font-size: var(--t-md);
+}
+
+.formArea {
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+}
+
+.marcaMobile {
+  display: none;
+}
+
+.caixa {
+  width: 100%;
+  max-width: 380px;
+  display: grid;
+  gap: 18px;
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--t-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.sub {
+  margin: -10px 0 6px;
+  color: var(--ink-2);
+}
+
+.ajuda {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+
+.perfis {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.perfil {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 150ms var(--ease), background 150ms var(--ease);
+}
+
+.perfil span {
+  display: grid;
+}
+
+.perfil small {
+  color: var(--ink-3);
+  font-size: var(--t-sm);
+}
+
+.perfil:hover:not(:disabled) {
+  border-color: var(--cobalt);
+  background: var(--cobalt-tint);
+}
+
+.gira {
+  animation: gira 800ms linear infinite;
+}
+
+@keyframes gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 820px) {
+  .pagina {
+    grid-template-columns: 1fr;
+  }
+  .painel {
+    display: none;
+  }
+  .formArea {
+    place-items: start center;
+    padding: 28px 20px;
+    gap: 32px;
+    align-content: start;
+  }
+  .marcaMobile {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+  }
+}

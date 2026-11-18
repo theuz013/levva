@@ -7,3 +7,5 @@ dist
 !.env.example
 *.log
 coverage
+.impeccable/review/
+.impeccable/mocks/

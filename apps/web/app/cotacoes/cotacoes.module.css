@@ -1,0 +1,532 @@
+.pagina {
+  padding: 28px 32px 48px;
+  max-width: 1440px;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--t-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.resumo {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---------- Lista de pedidos ---------- */
+
+.lista ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pedido {
+  width: 100%;
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+
+.pedido:hover {
+  border-color: var(--line-strong);
+}
+
+.pedido[aria-pressed='true'] {
+  border-color: var(--cobalt);
+  box-shadow: inset 0 0 0 1px var(--cobalt);
+}
+
+.pedidoTopo {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.pedidoTopo strong {
+  font-size: var(--t-md);
+}
+
+.pedidoTopo small {
+  color: var(--ink-3);
+  font-size: var(--t-xs);
+  white-space: nowrap;
+}
+
+.pedidoTrecho {
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+
+.pedidoMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+
+/* ---------- Detalhe ---------- */
+
+.detalhe {
+  display: grid;
+  gap: 20px;
+  scroll-margin-top: 16px;
+}
+
+.viagem {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) minmax(220px, 1.2fr) auto;
+  gap: 24px;
+  align-items: start;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.viagemCliente h2 {
+  margin: 0;
+  font-size: var(--t-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.viagemCliente p {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+
+/* Trajeto como linha de itinerário */
+.trajeto {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  position: relative;
+}
+
+.trajeto::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--cobalt);
+}
+
+.trajeto li {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.trajeto li > span:last-child {
+  display: grid;
+  line-height: 1.25;
+}
+
+.trajeto small {
+  font-weight: 600;
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+
+.ponto,
+.pontoFinal {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--cobalt);
+}
+
+.pontoFinal {
+  background: var(--cobalt);
+}
+
+.fatos {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.fatos div {
+  display: grid;
+  gap: 1px;
+}
+
+.fatos dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.fatos dd {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--t-sm);
+}
+
+.obs {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--ground);
+  border-radius: var(--radius-sm);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+.trabalho {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 20px;
+  align-items: start;
+}
+
+.calculadora {
+  display: grid;
+  gap: 16px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.secao {
+  margin: 4px 0 -4px;
+  font-size: var(--t-md);
+  font-weight: 800;
+}
+
+.secao:not(:first-child) {
+  margin-top: 12px;
+}
+
+.linha2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.aluguel {
+  margin: 0;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--ground);
+}
+
+.aluguel legend {
+  padding: 0 6px;
+  font-size: var(--t-sm);
+  font-weight: 700;
+}
+
+.custos {
+  margin: 8px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+  font-size: var(--t-sm);
+}
+
+.custos div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.custos dt {
+  color: var(--ink-2);
+}
+
+.custos dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.custoTotal {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line-strong);
+  font-size: var(--t-md);
+}
+
+.custoTotal dt,
+.custoTotal dd {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+/* ---------- Recibo da corrida ---------- */
+
+.recibo {
+  position: sticky;
+  top: 20px;
+  display: grid;
+  gap: 14px;
+  padding: 22px 24px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.sugeridoRotulo {
+  margin: 0;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.sugerido {
+  margin: -10px 0 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--cobalt-deep);
+}
+
+.sugeridoNota {
+  margin: -4px 0 4px;
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+
+.precoInput {
+  font-weight: 800;
+  font-size: var(--t-lg);
+}
+
+.barra {
+  display: flex;
+  height: 14px;
+  gap: 2px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra > span {
+  min-width: 3px;
+  transition: flex-grow 250ms var(--ease);
+}
+
+.partes {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  font-size: var(--t-sm);
+}
+
+.partes div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.partes dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+.partes dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.partes dd small {
+  display: inline-block;
+  width: 3.2ch;
+  text-align: right;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.chip {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.p_motorista {
+  background: var(--part-motorista);
+}
+.p_gestor {
+  background: var(--part-gestor);
+}
+.p_plataforma {
+  background: var(--part-plataforma);
+}
+.p_pix {
+  background: var(--part-pix);
+}
+.p_locadora {
+  background: var(--part-locadora);
+}
+
+.acoes {
+  display: grid;
+  gap: 8px;
+}
+
+.vazio {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 1280px) {
+  .viagem {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fatos {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+  .lista ul {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .trabalho {
+    grid-template-columns: 1fr;
+  }
+  .recibo {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .pagina {
+    padding: 20px 16px 32px;
+  }
+  .cabecalho {
+    margin-bottom: 16px;
+  }
+  .viagem {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 18px;
+  }
+  .fatos {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .calculadora,
+  .recibo {
+    padding: 18px;
+  }
+  .linha2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checks {
+  display: grid;
+  gap: 0;
+  margin-top: -6px;
+}
+
+/* Preço sempre à mão no celular */
+.precoFixo {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .precoFixo {
+    position: fixed;
+    z-index: 19;
+    left: 0;
+    right: 0;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -4px 12px rgb(14 26 51 / 0.06);
+  }
+  .precoFixo span {
+    display: grid;
+    line-height: 1.2;
+  }
+  .precoFixo small {
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .precoFixo strong {
+    font-size: var(--t-lg);
+    font-weight: 800;
+    color: var(--cobalt-deep);
+  }
+  .precoFixo .btn {
+    height: 40px;
+    padding: 0 14px;
+  }
+  .detalhe {
+    padding-bottom: 64px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .precoFixo {
+    bottom: 0;
+  }
+}
