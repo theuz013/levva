@@ -3,8 +3,20 @@
   "private": true,
   "packageManager": "pnpm@10.0.0",
   "scripts": {
+    "preparar": "node scripts/preparar-env.mjs && pnpm install && pnpm --filter @levva/shared build && pnpm --filter @levva/api exec prisma generate && pnpm --filter @levva/api exec prisma migrate deploy && pnpm --filter @levva/api db:seed",
+    "dev": "pnpm --filter @levva/shared build && pnpm --parallel --filter @levva/api --filter @levva/web dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "prisma",
+      "@prisma/client",
+      "@prisma/engines"
+    ]
   }
 }

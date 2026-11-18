@@ -29,7 +29,7 @@ Plano completo: https://claude.ai/artifact/PeRViETx6E4V9FDPqqaUmF
 
 ## Comandos
 
-- `pnpm install` — instala tudo
-- `pnpm test` — roda os testes de todos os pacotes
-- `pnpm --filter @levva/api dev` — API local (precisa de Postgres; ver `apps/api/.env.example`)
-- `pnpm --filter @levva/web dev` — painel local
+- `docker compose up -d` — sobe o PostgreSQL local
+- `pnpm preparar` — cria os .env, instala, gera o Prisma, aplica migrações e cria usuários de teste
+- `pnpm dev` — API (porta 3333) e painel (porta 3000) juntos
+- `pnpm test` — testes de todos os pacotes (a API usa o banco `levva_test`)

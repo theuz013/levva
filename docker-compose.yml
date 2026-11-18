@@ -1,0 +1,16 @@
+# Banco de dados local para desenvolvimento.
+# Uso: docker compose up -d
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: levva
+      POSTGRES_PASSWORD: levva
+      POSTGRES_DB: levva
+    ports:
+      - "5432:5432"
+    volumes:
+      - levva-pg:/var/lib/postgresql/data
+      - ./scripts/criar-banco-teste.sql:/docker-entrypoint-initdb.d/criar-banco-teste.sql:ro
+volumes:
+  levva-pg:
