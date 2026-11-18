@@ -1,0 +1,262 @@
+// Levva — modelo de dados do MVP.
+// Regras: dinheiro em centavos (Int); toda tabela de operação tem tenantId.
+// Localização em lat/lng por enquanto; PostGIS entra quando houver consultas de proximidade.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Perfil {
+  ADMIN_MASTER
+  GESTOR
+  MOTORISTA
+  CLIENTE
+}
+
+enum StatusCorrida {
+  COTACAO_SOLICITADA
+  PRECO_ENVIADO
+  CONFIRMADA
+  MOTORISTA_DESIGNADO
+  ACEITA_MOTORISTA
+  A_CAMINHO
+  CHEGOU
+  EM_VIAGEM
+  FINALIZADA
+  PAGA
+  CANCELADA
+}
+
+enum TipoCorrida {
+  PASSAGEIRO
+  OBJETO
+  AMBOS
+}
+
+enum CategoriaVeiculo {
+  EXECUTIVO
+  SUV
+  BLINDADO
+  VAN
+}
+
+enum OrigemVeiculo {
+  MOTORISTA
+  ALUGADO
+}
+
+enum ModoPagamento {
+  PIX_POR_CORRIDA
+  FATURADO
+}
+
+model Tenant {
+  id               String   @id @default(cuid())
+  nome             String
+  documento        String?
+  slug             String   @unique
+  logoUrl          String?
+  corPrimaria      String?
+  pixChave         String?
+  gestorBps        Int      @default(1500)
+  plataformaBps    Int      @default(700)
+  ativo            Boolean  @default(true)
+  createdAt        DateTime @default(now())
+
+  memberships     Membership[]
+  drivers         Driver[]
+  vehicles        Vehicle[]
+  customers       Customer[]
+  trips           Trip[]
+  fixedRoutes     FixedRoute[]
+  rentalPartners  RentalPartner[]
+  pricingSettings PricingSettings?
+}
+
+model User {
+  id          String   @id @default(cuid())
+  nome        String
+  email       String   @unique
+  telefone    String?
+  senhaHash   String
+  createdAt   DateTime @default(now())
+
+  memberships Membership[]
+}
+
+/// Liga um usuário a uma empresa com um perfil. ADMIN_MASTER não tem tenant.
+model Membership {
+  id        String  @id @default(cuid())
+  userId    String
+  tenantId  String?
+  perfil    Perfil
+  ativo     Boolean @default(true)
+
+  user   User    @relation(fields: [userId], references: [id])
+  tenant Tenant? @relation(fields: [tenantId], references: [id])
+
+  @@unique([userId, tenantId, perfil])
+  @@index([tenantId])
+}
+
+model Driver {
+  id              String    @id @default(cuid())
+  tenantId        String
+  userId          String?
+  nome            String
+  telefone        String
+  cnh             String?
+  cnhValidade     DateTime?
+  chavePix        String?
+  qualificacoes   String[]
+  ativo           Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id])
+  vehicles Vehicle[]
+  trips    Trip[]
+
+  @@index([tenantId])
+}
+
+model Vehicle {
+  id                 String           @id @default(cuid())
+  tenantId           String
+  driverId           String?
+  placa              String
+  modelo             String
+  cor                String
+  ano                Int
+  categoria          CategoriaVeiculo @default(EXECUTIVO)
+  origem             OrigemVeiculo    @default(MOTORISTA)
+  nivelBlindagem     String?
+  consumoKmPorLitro  Float
+  desgasteCentavosKm Int              @default(40)
+  aprovado           Boolean          @default(false)
+  ativo              Boolean          @default(true)
+
+  tenant Tenant  @relation(fields: [tenantId], references: [id])
+  driver Driver? @relation(fields: [driverId], references: [id])
+  trips  Trip[]
+
+  @@unique([tenantId, placa])
+  @@index([tenantId])
+}
+
+model Customer {
+  id                String        @id @default(cuid())
+  tenantId          String
+  nome              String
+  documento         String?
+  email             String?
+  telefone          String?
+  modoPagamento     ModoPagamento @default(PIX_POR_CORRIDA)
+  diaFechamento     Int?
+  prazoVencimento   Int?
+  limiteCentavos    Int?
+  preferencias      Json?
+  createdAt         DateTime      @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  trips  Trip[]
+
+  @@index([tenantId])
+}
+
+model PricingSettings {
+  tenantId                 String @id
+  precoCombustivelCentavos Int    @default(620)
+  desgasteCentavosKm       Int    @default(40)
+  esperaCentavosHora       Int    @default(6000)
+  taxaPixBps               Int    @default(0)
+  arredondarCentavos       Int    @default(1000)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+}
+
+model FixedRoute {
+  id            String @id @default(cuid())
+  tenantId      String
+  origem        String
+  destino       String
+  precoCentavos Int
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId])
+}
+
+model RentalPartner {
+  id        String  @id @default(cuid())
+  tenantId  String
+  nome      String
+  contato   String?
+  niveis    String[]
+  ativo     Boolean @default(true)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId])
+}
+
+model Trip {
+  id                 String           @id @default(cuid())
+  tenantId           String
+  customerId         String
+  driverId           String?
+  vehicleId          String?
+  tipo               TipoCorrida      @default(PASSAGEIRO)
+  categoria          CategoriaVeiculo @default(EXECUTIVO)
+  status             StatusCorrida    @default(COTACAO_SOLICITADA)
+  origem             String
+  destino            String
+  agendadaPara       DateTime
+  passageiroNome     String?
+  ocultarPassageiro  Boolean          @default(false)
+  precoCentavos      Int?
+  motoristaCentavos  Int?
+  gestorCentavos     Int?
+  plataformaCentavos Int?
+  observacoes        String?
+  createdAt          DateTime         @default(now())
+
+  tenant   Tenant        @relation(fields: [tenantId], references: [id])
+  customer Customer      @relation(fields: [customerId], references: [id])
+  driver   Driver?       @relation(fields: [driverId], references: [id])
+  vehicle  Vehicle?      @relation(fields: [vehicleId], references: [id])
+  events   TripEvent[]
+  points   LocationPoint[]
+
+  @@index([tenantId, status])
+  @@index([tenantId, agendadaPara])
+}
+
+model TripEvent {
+  id        String        @id @default(cuid())
+  tripId    String
+  status    StatusCorrida
+  autorId   String?
+  createdAt DateTime      @default(now())
+
+  trip Trip @relation(fields: [tripId], references: [id])
+
+  @@index([tripId])
+}
+
+model LocationPoint {
+  id         BigInt   @id @default(autoincrement())
+  tripId     String
+  lat        Float
+  lng        Float
+  velocidade Float?
+  registradoEm DateTime
+
+  trip Trip @relation(fields: [tripId], references: [id])
+
+  @@index([tripId, registradoEm])
+}
