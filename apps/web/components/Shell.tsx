@@ -4,7 +4,6 @@ import { Banknote, CalendarClock, Car, FileText, LogOut, Users } from 'lucide-re
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { salvarToken } from '@/lib/api';
-import { Marca } from './Marca';
 import s from './shell.module.css';
 
 const NAV = [
@@ -28,7 +27,7 @@ export function Shell({ children, empresa = 'Operação Levva' }: { children: Re
     <div className={s.shell}>
       <aside className={s.rail}>
         <div className={s.topo}>
-          <Marca tamanho={24} cor="var(--on-cobalt)" />
+          <img src="/levva-logo.png" alt="Levva Transporte Executivo" className={s.logo} width={168} height={33} />
           <span className={s.empresa}>{empresa}</span>
         </div>
         <nav aria-label="Principal" className={s.nav}>

@@ -1,27 +1,32 @@
 @import '@fontsource-variable/manrope';
 
 :root {
-  /* Pampulha: cobalto dos azulejos sobre fundo claro e frio. */
-  --ink: #0e1a33;
-  --ink-2: #46526b;
-  --ink-3: #5e6a82;
-  --ground: #f3f5f9;
+  /* Marca Levva: preto, branco e verde-limão do logo. */
+  --ink: #0b0c0a;
+  --ink-2: #4a4e47;
+  --ink-3: #61665d;
+  --ground: #f4f5f3;
   --surface: #ffffff;
-  --line: #d9dfe9;
-  --line-strong: #b9c3d4;
+  --line: #e0e2dd;
+  --line-strong: #c3c7bf;
 
-  --cobalt: #1c3da3;
-  --cobalt-deep: #132c78;
-  --cobalt-tint: #e8edfa;
-  --on-cobalt: #ffffff;
-  --on-cobalt-2: #c8d3f4;
+  --shell: #000000;
+  --shell-2: #1a1b19;
+  --on-shell: #ffffff;
+  --on-shell-2: #b4b8b0;
+
+  --accent: #9bd033;
+  --accent-hover: #8cc020;
+  --accent-ink: #3f6b0c;
+  --accent-tint: #f0f7e1;
+  --on-accent: #0b0c0a;
 
   /* Recibo da corrida */
-  --part-motorista: #1c3da3;
-  --part-gestor: #b5701a;
-  --part-plataforma: #5b6b8c;
-  --part-pix: #9aa6bc;
-  --part-locadora: #2f7d6d;
+  --part-motorista: #0b0c0a;
+  --part-gestor: #9bd033;
+  --part-plataforma: #7a8091;
+  --part-pix: #b8bec9;
+  --part-locadora: #2f6f8f;
 
   --ok: #1f7a4d;
   --ok-tint: #e5f3ec;
@@ -33,7 +38,7 @@
   --radius: 10px;
   --radius-sm: 6px;
   --shadow: 0 1px 2px rgb(14 26 51 / 0.06), 0 4px 12px rgb(14 26 51 / 0.05);
-  --focus: 0 0 0 3px rgb(28 61 163 / 0.28);
+  --focus: 0 0 0 2px #ffffff, 0 0 0 4px var(--accent-ink);
 
   --font: 'Manrope Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --t-xs: 0.75rem;
@@ -64,8 +69,8 @@ body {
 }
 
 ::selection {
-  background: var(--cobalt);
-  color: var(--on-cobalt);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 input,
@@ -74,11 +79,11 @@ textarea,
 button {
   font: inherit;
   color: inherit;
-  caret-color: var(--cobalt);
+  caret-color: var(--accent-ink);
 }
 
 a {
-  color: var(--cobalt);
+  color: var(--accent-ink);
   text-underline-offset: 3px;
 }
 
@@ -138,7 +143,7 @@ a {
 .input:focus,
 .select:focus {
   outline: none;
-  border-color: var(--cobalt);
+  border-color: var(--ink);
   box-shadow: var(--focus);
 }
 
@@ -177,7 +182,7 @@ a {
 .check input {
   width: 18px;
   height: 18px;
-  accent-color: var(--cobalt);
+  accent-color: var(--ink);
 }
 
 .btn {
@@ -206,12 +211,12 @@ a {
 }
 
 .btn-primary {
-  background: var(--cobalt);
-  color: var(--on-cobalt);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--cobalt-deep);
+  background: var(--accent-hover);
 }
 
 .btn-ghost {
@@ -239,8 +244,8 @@ a {
 }
 
 .alert-info {
-  background: var(--cobalt-tint);
-  color: var(--cobalt-deep);
+  background: var(--accent-tint);
+  color: var(--accent-ink);
 }
 
 .tag {
@@ -276,4 +281,9 @@ a {
     transition: none !important;
     animation: none !important;
   }
+}
+
+.input[aria-invalid='true']:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--danger);
 }

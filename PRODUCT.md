@@ -38,8 +38,9 @@ Não é app de corrida. É a ferramenta de uma operação executiva de alto nív
 
 ## Brand Commitments
 
-- Nome provisório: **Levva** (marca ainda não registrada).
-- Sem logo, cores ou fontes definidas; a identidade é criada pelo design.
+- Nome: **Levva — Transporte Executivo** (marca ainda não registrada no INPI).
+- Logo oficial fornecido pelo dono: símbolo "L" com estrada e pin de localização verde, linha vertical e o nome LEVVA em geométrica larga com o último A em verde; assinatura "TRANSPORTE EXECUTIVO" espaçada. Arquivos em `apps/web/public/levva-logo.png` e `levva-simbolo.png` (recortados do original, fundo transparente, versão para fundo escuro).
+- Cores da marca, vinculantes: preto, branco e verde-limão (~#9BD033, medido no logo).
 - Tom: discreto, preciso, de alto padrão; nada de linguagem de app de corrida popular, gamificação ou promoção.
 
 ## Evidence on Hand

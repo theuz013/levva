@@ -6,8 +6,8 @@
 }
 
 .painel {
-  background: var(--cobalt);
-  color: var(--on-cobalt);
+  background: var(--shell);
+  color: var(--on-shell);
   padding: 40px 48px;
   display: flex;
   flex-direction: column;
@@ -16,14 +16,17 @@
   overflow: hidden;
 }
 
-.arcos {
-  position: absolute;
-  right: -150px;
-  bottom: 0;
-  width: 92%;
-  max-width: 640px;
+.logo {
+  width: min(340px, 80%);
   height: auto;
-  pointer-events: none;
+}
+
+.traco {
+  width: 56px;
+  height: 4px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .frase {
@@ -44,7 +47,7 @@
 .fraseMenor {
   margin: 0;
   white-space: nowrap;
-  color: var(--on-cobalt-2);
+  color: var(--on-shell-2);
   font-size: var(--t-md);
 }
 
@@ -118,8 +121,8 @@
 }
 
 .perfil:hover:not(:disabled) {
-  border-color: var(--cobalt);
-  background: var(--cobalt-tint);
+  border-color: var(--ink);
+  background: var(--accent-tint);
 }
 
 .gira {
@@ -145,9 +148,19 @@
     gap: 32px;
     align-content: start;
   }
+  .formArea {
+    padding-top: 0;
+  }
   .marcaMobile {
     display: block;
-    width: 100%;
-    max-width: 380px;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    padding: 20px;
+    background: var(--shell);
+  }
+  .marcaMobile img {
+    display: block;
+    width: 200px;
+    height: auto;
   }
 }

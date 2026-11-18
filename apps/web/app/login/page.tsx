@@ -3,7 +3,6 @@
 import { AlertCircle, ArrowRight, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
-import { Marca } from '@/components/Marca';
 import { api, ErroApi, salvarToken } from '@/lib/api';
 import s from './login.module.css';
 
@@ -55,14 +54,11 @@ export default function LoginPage() {
 
   return (
     <main className={s.pagina}>
-      <section className={s.painel} aria-hidden="true">
-        <Marca tamanho={34} cor="var(--on-cobalt)" />
-        <svg className={s.arcos} viewBox="0 0 640 420" fill="none" aria-hidden="true">
-          <path d="M20 420V250a110 110 0 0 1 220 0v170" stroke="rgb(255 255 255 / 0.16)" strokeWidth="2" />
-          <path d="M240 420V190a170 170 0 0 1 340 0v230" stroke="rgb(255 255 255 / 0.16)" strokeWidth="2" />
-          <path d="M290 420V190a120 120 0 0 1 240 0v230" stroke="rgb(255 255 255 / 0.08)" strokeWidth="2" />
-        </svg>
+      <section className={s.painel}>
+        <h2 className="sr-only">Levva Transporte Executivo</h2>
+        <img src="/levva-logo.png" alt="" className={s.logo} width={340} height={67} />
         <div className={s.frase}>
+          <div className={s.traco} aria-hidden="true" />
           <p className={s.fraseGrande}>Cada corrida com preço certo, motorista certo e horário cumprido.</p>
           <p className={s.fraseMenor}>Gestão de transporte executivo · Belo Horizonte</p>
         </div>
@@ -70,7 +66,7 @@ export default function LoginPage() {
 
       <section className={s.formArea}>
         <div className={s.marcaMobile}>
-          <Marca tamanho={28} cor="var(--cobalt)" />
+          <img src="/levva-logo.png" alt="Levva Transporte Executivo" width={200} height={39} />
         </div>
 
         {perfis ? (
