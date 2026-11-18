@@ -34,7 +34,7 @@ Não é app de corrida. É a ferramenta de uma operação executiva de alto nív
 - Stack: Next.js (apps/web) consumindo a API NestJS (apps/api); regras de preço em packages/shared.
 - Valores em centavos; moeda BRL; datas e textos em português do Brasil.
 - Perfis: ADMIN_MASTER, GESTOR, MOTORISTA, CLIENTE.
-- Undecided: domínio, logo e identidade final da marca; acesso web do cliente corporativo ainda não construído.
+- Undecided: domínio; versão do logo para fundo claro; acesso web do cliente corporativo ainda não construído.
 
 ## Brand Commitments
 
